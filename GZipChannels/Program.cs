@@ -1,12 +1,34 @@
 ﻿using System;
+using CommandLine;
 
 namespace GZipChannels
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static int Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var exitCode = 0;
+
+            try
+            {
+
+                Parser.Default.ParseArguments<GZipChannelsOptions>(args)
+                    .WithParsed<GZipChannelsOptions>(o =>
+                    {
+
+                    }).WithNotParsed(errors =>
+                    {
+                        exitCode = 1;
+                    });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+
+                exitCode = 1;
+            }
+
+            return exitCode;
         }
     }
 }
