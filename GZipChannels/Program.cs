@@ -1,25 +1,31 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using CommandLine;
 
 namespace GZipChannels
 {
     internal static class Program
     {
-        private static int Main(string[] args)
+        private static async Task<int> Main(string[] args)
         {
             var exitCode = 0;
 
             try
             {
+                var result = Parser.Default.ParseArguments<GZipChannelsOptions>(args);
 
-                Parser.Default.ParseArguments<GZipChannelsOptions>(args)
-                    .WithParsed<GZipChannelsOptions>(o =>
-                    {
+                var parsed = result.WithParsedAsync(WithParsedAsync);
+                var failed = result.WithNotParsedAsync(errors =>
+                {
+                    exitCode = 1;
 
-                    }).WithNotParsed(errors =>
-                    {
-                        exitCode = 1;
-                    });
+                    return Task.CompletedTask;
+                });
+
+                await Task.WhenAll(parsed, failed);
+
+                return exitCode;
             }
             catch (Exception e)
             {
@@ -29,6 +35,11 @@ namespace GZipChannels
             }
 
             return exitCode;
+        }
+
+        private static Task WithParsedAsync(GZipChannelsOptions arg)
+        {
+            return Task.CompletedTask;
         }
     }
 }
