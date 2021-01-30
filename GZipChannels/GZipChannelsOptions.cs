@@ -3,16 +3,10 @@ using CommandLine;
 
 namespace GZipChannels
 {
-    public enum Mode
-    {
-        Compress,
-        Decompress
-    }
-
    internal  class GZipChannelsOptions
     {
         [Option('m', "mode", Required = true, HelpText = "Select mode. (Compress/Decompress)")]
-        public Mode Mode { get; set; }
+        public string Mode { get; set; }
 
         [Option('s', "source", Required = true, HelpText = "Source file path.")]
         public string SourcePath { get; set; }

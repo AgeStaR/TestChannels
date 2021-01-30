@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "GZipChannels": {
+      "commandName": "Project",
+      "commandLineArgs": "-m compress -s \"C:\\The Jackbox Party Pack 3 Russian.zip\" -t \"E:\\The Jackbox Party Pack 3 Russian.zip\""
+    }
+  }
+}
