@@ -48,9 +48,10 @@ namespace GZipChannels
 
                 if (readed < BlockSize)
                 {
-                    var segment = new ArraySegment<byte>(bytes,0, readed);
+                    var arr = new byte[readed];
+                    Buffer.BlockCopy(bytes, 0, arr, 0, readed);
 
-                    await _channel.Writer.WriteAsync(segment.ToArray());
+                    await _channel.Writer.WriteAsync(arr);
                 }
 
             } while (readed > 0);
