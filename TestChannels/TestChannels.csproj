@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net5</TargetFramework>
     <LangVersion>9.0</LangVersion>
+    <RootNamespace>GZipChannels</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

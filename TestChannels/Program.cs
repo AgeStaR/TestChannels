@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using CommandLine;
 
-namespace GZipChannels
+namespace TestChannels
 {
     internal static class Program
     {
@@ -13,7 +12,7 @@ namespace GZipChannels
 
             try
             {
-                var result = Parser.Default.ParseArguments<GZipChannelsOptions>(args);
+                var result = Parser.Default.ParseArguments<ChannelsOptions>(args);
 
                 var parsed = result.WithParsedAsync(WithParsedAsync);
                 var failed = result.WithNotParsedAsync(errors =>
@@ -37,7 +36,7 @@ namespace GZipChannels
             return exitCode;
         }
 
-        private static async Task WithParsedAsync(GZipChannelsOptions arg)
+        private static async Task WithParsedAsync(ChannelsOptions arg)
         {
             var a = new Copier(arg.SourcePath, arg.TargetPath);
             await a.Run();

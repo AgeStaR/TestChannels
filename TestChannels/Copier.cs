@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 
-namespace GZipChannels
+namespace TestChannels
 {
     internal class Copier
     {
@@ -25,7 +25,6 @@ namespace GZipChannels
             var fileWriter = Task.Run(WriteTargetFile);
 
             await ReadFileToChannel();
-
             await fileWriter;
         }
 

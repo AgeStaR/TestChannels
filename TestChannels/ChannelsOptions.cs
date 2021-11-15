@@ -1,13 +1,9 @@
-﻿using System.Collections.Generic;
-using CommandLine;
+﻿using CommandLine;
 
-namespace GZipChannels
+namespace TestChannels
 {
-   internal  class GZipChannelsOptions
+   internal  class ChannelsOptions
     {
-        [Option('m', "mode", Required = true, HelpText = "Select mode. (Compress/Decompress)")]
-        public string Mode { get; set; }
-
         [Option('s', "source", Required = true, HelpText = "Source file path.")]
         public string SourcePath { get; set; }
 
